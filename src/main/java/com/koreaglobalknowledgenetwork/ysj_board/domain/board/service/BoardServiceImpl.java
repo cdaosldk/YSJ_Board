@@ -1,5 +1,6 @@
 package com.koreaglobalknowledgenetwork.ysj_board.domain.board.service;
 
+import com.koreaglobalknowledgenetwork.ysj_board.domain.board.dto.BoardRequestDto;
 import com.koreaglobalknowledgenetwork.ysj_board.domain.board.dto.BoardResponseDto;
 import com.koreaglobalknowledgenetwork.ysj_board.domain.board.dto.PagingBoardResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class BoardServiceImpl implements BoardService{
 
   @Override
-  public void createBoard() {
+  public void createBoard(BoardRequestDto boardRequestDto) {
 
   }
 

@@ -1,6 +1,6 @@
 package com.koreaglobalknowledgenetwork.ysj_board.domain.board.entity;
 
-import com.koreaglobalknowledgenetwork.ysj_board.util.TimeStamped;
+import com.koreaglobalknowledgenetwork.ysj_board.TimeStamped;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;

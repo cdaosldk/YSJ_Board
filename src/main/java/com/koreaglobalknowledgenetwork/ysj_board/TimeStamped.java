@@ -1,4 +1,4 @@
-package com.koreaglobalknowledgenetwork.ysj_board.util;
+package com.koreaglobalknowledgenetwork.ysj_board;
 
 import java.time.LocalDateTime;
 import javax.persistence.EntityListeners;
