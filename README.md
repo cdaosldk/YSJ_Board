@@ -9,7 +9,7 @@
 - Spring boot 2.7.11
 - Spring boot devtools
 - Spring data JPA
-- lombok
+- Lombok
 
 # 코드 실행방법
 
