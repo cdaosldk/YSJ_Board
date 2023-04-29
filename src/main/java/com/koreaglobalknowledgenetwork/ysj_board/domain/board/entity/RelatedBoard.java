@@ -10,5 +10,7 @@ public class RelatedBoard {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
-  Long id;
+  long id;
+
+
 }

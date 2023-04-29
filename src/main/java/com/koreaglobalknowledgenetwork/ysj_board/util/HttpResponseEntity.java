@@ -12,9 +12,9 @@ public class HttpResponseEntity {
           ResponseMessages.SUCCESS));
 
   public static final ResponseEntity<StatusResponseDto> RESPONSE_CREATED = ResponseEntity.status(
-      HttpStatus.CREATED).build();
+      HttpStatus.CREATED).body(StatusResponseDto.valueOf(ResponseMessages.CREATED_SUCCESS));
 
   public static final ResponseEntity<StatusResponseDto> RESPONSE_DELETE = ResponseEntity.status(
-      HttpStatus.NO_CONTENT).build();
+      HttpStatus.NO_CONTENT).body(StatusResponseDto.valueOf(ResponseMessages.DELETE_SUCCESS));
 
 }

@@ -19,13 +19,13 @@ public class Board extends TimeStamped {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
-  Long id;
+  long id;
 
   String title;
 
   String content;
 
-  public Board(Long id, String title, String content) {
+  public Board(long id, String title, String content) {
     this.id = id;
     this.title = title;
     this.content = content;
