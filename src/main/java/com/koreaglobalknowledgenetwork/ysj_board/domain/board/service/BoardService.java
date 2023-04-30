@@ -2,7 +2,6 @@ package com.koreaglobalknowledgenetwork.ysj_board.domain.board.service;
 
 import com.koreaglobalknowledgenetwork.ysj_board.domain.board.dto.BoardRequestDto;
 import com.koreaglobalknowledgenetwork.ysj_board.domain.board.dto.BoardResponseDto;
-import com.koreaglobalknowledgenetwork.ysj_board.domain.board.dto.PagingBoardResponseDto;
 import com.koreaglobalknowledgenetwork.ysj_board.dto.PageDto;
 import org.springframework.data.domain.Page;
 

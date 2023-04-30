@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @Entity
-public class RelatedBoard {
+public class RelatedBoard implements Comparable<RelatedBoard> {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -34,4 +34,9 @@ public class RelatedBoard {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "board_id")
   private Board board;
+
+  @Override
+  public int compareTo(RelatedBoard relatedBoard) {
+    return Integer.compare(this.relatedWords, relatedBoard.relatedWords);
+  }
 }

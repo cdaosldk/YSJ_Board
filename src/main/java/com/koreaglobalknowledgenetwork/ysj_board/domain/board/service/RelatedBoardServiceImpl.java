@@ -2,14 +2,12 @@ package com.koreaglobalknowledgenetwork.ysj_board.domain.board.service;
 
 import com.koreaglobalknowledgenetwork.ysj_board.domain.board.entity.Board;
 import com.koreaglobalknowledgenetwork.ysj_board.domain.board.entity.RelatedBoard;
-import com.koreaglobalknowledgenetwork.ysj_board.domain.board.repository.BoardRepository;
 import com.koreaglobalknowledgenetwork.ysj_board.domain.board.repository.RelatedBoardRepository;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

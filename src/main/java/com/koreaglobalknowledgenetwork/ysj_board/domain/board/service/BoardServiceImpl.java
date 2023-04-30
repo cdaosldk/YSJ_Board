@@ -31,7 +31,7 @@ public class BoardServiceImpl implements BoardService{
   public BoardResponseDto getBoard(long boardId) {
     Board board = findBoardById(boardId);
     relatedBoardService.createRelatedBoard(boardRepository.findAll());
-
+    board.sortingRelatedBoards();
     return new BoardResponseDto(board);
   }
 

@@ -2,7 +2,6 @@ package com.koreaglobalknowledgenetwork.ysj_board.domain.board.dto;
 
 import com.koreaglobalknowledgenetwork.ysj_board.domain.board.entity.Board;
 import java.time.LocalDateTime;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

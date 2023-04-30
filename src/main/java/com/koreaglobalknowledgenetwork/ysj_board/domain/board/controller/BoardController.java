@@ -6,7 +6,6 @@ import static com.koreaglobalknowledgenetwork.ysj_board.util.HttpResponseEntity.
 
 import com.koreaglobalknowledgenetwork.ysj_board.domain.board.dto.BoardRequestDto;
 import com.koreaglobalknowledgenetwork.ysj_board.domain.board.dto.BoardResponseDto;
-import com.koreaglobalknowledgenetwork.ysj_board.domain.board.dto.PagingBoardResponseDto;
 import com.koreaglobalknowledgenetwork.ysj_board.domain.board.service.BoardService;
 import com.koreaglobalknowledgenetwork.ysj_board.dto.PageDto;
 import com.koreaglobalknowledgenetwork.ysj_board.dto.StatusResponseDto;
