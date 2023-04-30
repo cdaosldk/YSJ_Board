@@ -39,7 +39,7 @@ public class Board extends TimeStamped {
   }
 
   @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
-  private Set<RelatedBoard> relatedBoards = new LinkedHashSet<>();
+  private final Set<RelatedBoard> relatedBoards = new LinkedHashSet<>();
 
   public void update(BoardRequestDto boardRequestDto) {
     this.title = boardRequestDto.getTitle();

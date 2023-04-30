@@ -3,7 +3,9 @@ package com.koreaglobalknowledgenetwork.ysj_board.util;
 import java.nio.charset.StandardCharsets;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
 
+@Component
 public class SetHttpHeaders {
 
   public HttpHeaders setHeaderTypeJson() {

@@ -1,7 +1,9 @@
 package com.koreaglobalknowledgenetwork.ysj_board.domain.board.service;
 
 import com.koreaglobalknowledgenetwork.ysj_board.domain.board.entity.Board;
+import com.koreaglobalknowledgenetwork.ysj_board.domain.board.entity.RelatedBoard;
 import com.koreaglobalknowledgenetwork.ysj_board.domain.board.repository.BoardRepository;
+import com.koreaglobalknowledgenetwork.ysj_board.domain.board.repository.RelatedBoardRepository;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -15,80 +17,69 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class RelatedBoardServiceImpl implements RelatedBoardService{
+public class RelatedBoardServiceImpl implements RelatedBoardService {
 
   // 연관 단어 파악 기준
   private static final double WORD_FREQUENCY_THRESHOLD = 0.4;
   private static final int MIN_RELATED_WORDS_COUNT = 2;
 
-  private final BoardRepository boardRepository;
+  private final RelatedBoardRepository relatedBoardRepository;
 
   // 연관 단어 파악 메서드
   @Override
   @Transactional
-  public void findRelatedBoard(Board board) {
+  public void createRelatedBoard(List<Board> boardList) {
     Map<String, Integer> wordCountMap = new HashMap<>();
-    Map<String, Double> wordFrequencyMap = new HashMap<>();
-    List<String> relatedWords = new ArrayList<>();
-    Map<Board, List<String>> relatedWordsMap = new HashMap<>();
 
     int totalWordCount = 0;
 
-    for (board : getBoards()) {
+    for (Board board : boardList) {
       for (String word : splitWords(board)) {
         // 게시글별 단어 등장 횟수 계산
         int count = wordCountMap.getOrDefault(word, 0);
         wordCountMap.put(word, count + 1);
         totalWordCount++;
+      }
+    }
 
-        // 전체 단어 중 자주 사용되는 단어 제외
-        Set<String> commonWords = getCommonWords(wordCountMap, totalWordCount);
-        wordCountMap.keySet().removeAll(commonWords);
+    // 전체 단어 중 자주 사용되는 단어 제외
+    Set<String> commonWords = getCommonWords(wordCountMap, totalWordCount);
+    wordCountMap.keySet().removeAll(commonWords);
 
-        // 게시글 내 단어별 등장 비중 계산
+    for (Board board : boardList) {
+      List<String> relatedWords = new ArrayList<>();
+      String[] words = splitWords(board);
+
+      // 게시글 내 단어별 등장 비중 계산
+      Map<String, Double> wordFrequencyMap = new HashMap<>();
+      for (String word : words) {
         if (wordCountMap.containsKey(word)) {
           double frequency = (double) wordCountMap.get(word) / totalWordCount;
           wordFrequencyMap.put(word, frequency);
         }
+      }
 
-        // 연관 단어 파악
-        for (word : wordCountMap.keySet()) {
-          if (wordFrequencyMap.containsKey(word)) {
-            double frequency = wordFrequencyMap.get(word);
-            if (frequency <= WORD_FREQUENCY_THRESHOLD) {
-              relatedWords.add(word);
-            }
+      // 연관단어 리스트에 추가하기
+      for (String word : wordCountMap.keySet()) {
+        if (wordFrequencyMap.containsKey(word)) {
+          double frequency = wordFrequencyMap.get(word);
+          if (frequency <= WORD_FREQUENCY_THRESHOLD
+              && wordCountMap.get(word) >= MIN_RELATED_WORDS_COUNT) {
+            relatedWords.add(word);
           }
         }
       }
-    }
 
-  }
-  @Override
-  public void sortingRelatedBoard() {
-    // Sort related posts by relevance
-    Collections.sort(relatedPosts, new Comparator<Post>() {
-      public int compare(Post p1, Post p2) {
-        int count1 = countCommonWords(p1);
-        int count2 = countCommonWords(p2);
-        if (count1 != count2) {
-          return count2 - count1;
-        }
-        int freq1 = countUncommonWords(p1);
-        int freq2 = countUncommonWords(p2);
-        return freq2 - freq1;
+      // 조건을 만족하는 relatedBoard 객체를 생성하고 DB에 저장
+      if(!relatedWords.isEmpty()) {
+        relatedBoardRepository.save(
+            RelatedBoard.builder()
+                .title(board.getTitle())
+                .relatedWords(relatedWords.size())
+                .board(board)
+                .build());
       }
-    });
-  }
-
-  // 게시글별 단어 등장 횟수 계산
-
-  private void findCommonWords() {
-
-  }
-
-  private int countUncommonWords() {
-    return 0;
+    }
   }
 
   // 전체 단어 중 자주 사용되는 단어 제외
@@ -105,9 +96,5 @@ public class RelatedBoardServiceImpl implements RelatedBoardService{
 
   private String[] splitWords(Board board) {
     return board.getContent().split("\\s+");
-  }
-
-  private List<Board> getBoards() {
-    return boardRepository.findAll();
   }
 }

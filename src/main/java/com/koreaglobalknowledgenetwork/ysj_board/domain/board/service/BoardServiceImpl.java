@@ -30,7 +30,7 @@ public class BoardServiceImpl implements BoardService{
   @Override
   public BoardResponseDto getBoard(long boardId) {
     Board board = findBoardById(boardId);
-    relatedBoardService.findRelatedBoard(board);
+    relatedBoardService.createRelatedBoard(boardRepository.findAll());
 
     return new BoardResponseDto(board);
   }
