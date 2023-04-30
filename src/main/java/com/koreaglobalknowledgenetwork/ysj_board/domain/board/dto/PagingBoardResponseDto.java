@@ -1,6 +1,7 @@
 package com.koreaglobalknowledgenetwork.ysj_board.domain.board.dto;
 
 import java.time.LocalDateTime;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ public class PagingBoardResponseDto {
 
   private LocalDateTime modiefiedAt;
 
+  @Builder
   public PagingBoardResponseDto(String title, LocalDateTime createdAt, LocalDateTime modiefiedAt) {
     this.title = title;
     this.createdAt = createdAt;

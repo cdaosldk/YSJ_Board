@@ -1,6 +1,8 @@
 package com.koreaglobalknowledgenetwork.ysj_board.domain.board.dto;
 
+import com.koreaglobalknowledgenetwork.ysj_board.domain.board.entity.Board;
 import java.time.LocalDateTime;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -18,12 +20,11 @@ public class BoardResponseDto {
 
   private LocalDateTime modifiedAt;
 
-  public BoardResponseDto(long boardId, String title, String content, LocalDateTime createdAt,
-      LocalDateTime modifiedAt) {
-    this.boardId = boardId;
-    this.title = title;
-    this.content = content;
-    this.createdAt = createdAt;
-    this.modifiedAt = modifiedAt;
+  public BoardResponseDto(Board board) {
+    this.boardId = board.getId();
+    this.title = board.getTitle();
+    this.content = board.getContent();
+    this.createdAt = board.getCreatedAt();
+    this.modifiedAt = board.getModifiedAt();
   }
 }

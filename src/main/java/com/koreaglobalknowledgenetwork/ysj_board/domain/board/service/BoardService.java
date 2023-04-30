@@ -12,9 +12,9 @@ public interface BoardService {
 
   BoardResponseDto getBoard(long boardId);
 
-  Page<PagingBoardResponseDto> getBoards(PageDto pageDto);
+  Page<BoardResponseDto> getBoards(PageDto pageDto);
 
-  void updateBoard(long boardId);
+  void updateBoard(long boardId, BoardRequestDto boardRequestDto);
 
   void deleteBoard(long boardId);
 

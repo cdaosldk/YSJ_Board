@@ -46,13 +46,13 @@ public class BoardController {
   }
 
   @GetMapping
-  public ResponseEntity<Page<PagingBoardResponseDto>> getBoards(@ModelAttribute PageDto pageDto) {
+  public ResponseEntity<Page<BoardResponseDto>> getBoards(@ModelAttribute PageDto pageDto) {
     return ResponseEntity.ok().body(boardService.getBoards(pageDto));
   }
 
   @PatchMapping("/{boardId}")
-  public ResponseEntity<StatusResponseDto> updateBoard(@PathVariable long boardId) {
-    boardService.updateBoard(boardId);
+  public ResponseEntity<StatusResponseDto> updateBoard(@PathVariable long boardId, @RequestBody BoardRequestDto boardRequestDto) {
+    boardService.updateBoard(boardId, boardRequestDto);
     return RESPONSE_OK;
   }
 

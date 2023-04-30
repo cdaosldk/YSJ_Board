@@ -12,5 +12,7 @@ public class RelatedBoard {
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   long id;
 
+  long boardId;
 
+  String title;
 }
