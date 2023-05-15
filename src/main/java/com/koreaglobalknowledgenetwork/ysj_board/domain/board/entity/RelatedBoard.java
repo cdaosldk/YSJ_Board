@@ -25,7 +25,7 @@ public class RelatedBoard implements Comparable<RelatedBoard> {
   int relatedWords;
 
   @Builder
-  public RelatedBoard(String title, int relatedWords, Board board) {
+  public RelatedBoard(long boardId, String title, int relatedWords, Board board) {
     this.title = title;
     this.relatedWords = relatedWords;
     this.board = board;
